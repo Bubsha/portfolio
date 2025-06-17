@@ -23,3 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const hireMeBtn = document.getElementById("hireMeBtn");
+  const whatsappURL = "https://wa.link/508d36"; // Your WhatsApp short link
+
+  hireMeBtn.addEventListener("click", function () {
+    window.open(whatsappURL, "_blank");
+  });
+});
