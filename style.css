@@ -132,3 +132,20 @@ section {
   width: 0;
   animation: typing 3s steps(30, end) forwards;
 }
+
+.cta-btn {
+  background-color: #0077b5;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #005f91;
+  transform: scale(1.05);
+}
+
