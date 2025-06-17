@@ -13,4 +13,3 @@ type();
 document.getElementById("hireBtn").addEventListener("click", () => {
     alert("📞 Call me at +91 9994473997");
 });
-
