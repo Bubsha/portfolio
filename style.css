@@ -1,138 +1,29 @@
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #080b16;
-  color: #f0f0f0;
+const typingElement = document.querySelector(".typing");
+const texts = ["Digital Marketer", "Content Creator", "Zoho Expert", "YouTube Storyteller"];
+let idx = 0;
+let charIdx = 0;
+let currentText = '';
+let isDeleting = false;
+
+function type() {
+  if (idx >= texts.length) idx = 0;
+  currentText = texts[idx];
+
+  if (isDeleting) {
+    typingElement.textContent = currentText.substring(0, charIdx--);
+    if (charIdx < 0) {
+      isDeleting = false;
+      idx++;
+    }
+  } else {
+    typingElement.textContent = currentText.substring(0, charIdx++);
+    if (charIdx > currentText.length) {
+      isDeleting = true;
+      setTimeout(type, 800);
+      return;
+    }
+  }
+  setTimeout(type, isDeleting ? 60 : 120);
 }
 
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, rgba(0,172,255,0.3), rgba(30,30,60,0.8));
-  backdrop-filter: blur(10px);
-}
-
-.hero h1 {
-  font-size: 50px;
-  margin-bottom: 10px;
-  color: #54C3EF;
-}
-
-.hero h2 {
-  font-size: 26px;
-  height: 32px;
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 14px 32px;
-  background: #54C3EF;
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  font-size: 17px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #1a9bd0;
-}
-
-.about, .experience, .skills, .contact {
-  padding: 70px 20px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
-  color: #54C3EF;
-}
-
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  backdrop-filter: blur(8px);
-  transition: 0.4s;
-}
-
-.card:hover {
-  background: rgba(84,195,239,0.15);
-}
-
-.skill-bar {
-  margin: 25px auto;
-  width: 80%;
-  max-width: 600px;
-  text-align: left;
-}
-
-.skill-bar p {
-  margin-bottom: 5px;
-}
-
-.bar {
-  background: rgba(255,255,255,0.08);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.progress {
-  background: linear-gradient(90deg, #54C3EF, #1a9bd0);
-  height: 15px;
-  border-radius: 20px;
-}
-
-.contact form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact input, .contact textarea {
-  padding: 12px;
-  margin: 10px;
-  width: 90%;
-  max-width: 450px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #fff;
-  border-radius: 12px;
-  backdrop-filter: blur(5px);
-  transition: border-color 0.3s;
-}
-
-.contact input:focus, .contact textarea:focus {
-  border-color: #54C3EF;
-  outline: none;
-}
-
-.contact button {
-  margin-top: 15px;
-  padding: 14px 40px;
-  background: #54C3EF;
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-footer {
-  padding: 20px;
-  text-align: center;
-  background: rgba(255,255,255,0.03);
-}
-
-footer a {
-  margin: 0 14px;
-  color: #54C3EF;
-  font-size: 28px;
-}
-
-footer a:hover {
-  color: #1a9bd0;
-}
+document.addEventListener("DOMContentLoaded", type);
