@@ -1,15 +1,29 @@
-// Typing Animation
-const text = "Digital Marketing Specialist & Content Creator.";
-let index = 0;
-function type() {
-  document.getElementById("typing").textContent = text.slice(0, index++);
-  if (index <= text.length) {
-    setTimeout(type, 80);
-  }
-}
-type();
+const typingElement = document.querySelector(".typing");
+const texts = ["Digital Marketer", "Content Creator", "Zoho Expert", "YouTube Storyteller"];
+let idx = 0;
+let charIdx = 0;
+let currentText = '';
+let isDeleting = false;
 
-// Hire Me Button Click
-document.getElementById("hireBtn").addEventListener("click", () => {
-  alert("📞 Call me at +91 9994473997");
-});
+function type() {
+  if (idx >= texts.length) idx = 0;
+  currentText = texts[idx];
+
+  if (isDeleting) {
+    typingElement.textContent = currentText.substring(0, charIdx--);
+    if (charIdx < 0) {
+      isDeleting = false;
+      idx++;
+    }
+  } else {
+    typingElement.textContent = currentText.substring(0, charIdx++);
+    if (charIdx > currentText.length) {
+      isDeleting = true;
+      setTimeout(type, 800);
+      return;
+    }
+  }
+  setTimeout(type, isDeleting ? 60 : 120);
+}
+
+document.addEventListener("DOMContentLoaded", type);
