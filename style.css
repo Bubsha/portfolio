@@ -1,29 +1,146 @@
-const typingElement = document.querySelector(".typing");
-const texts = ["Digital Marketer", "Content Creator", "Zoho Expert", "YouTube Storyteller"];
-let idx = 0;
-let charIdx = 0;
-let currentText = '';
-let isDeleting = false;
-
-function type() {
-  if (idx >= texts.length) idx = 0;
-  currentText = texts[idx];
-
-  if (isDeleting) {
-    typingElement.textContent = currentText.substring(0, charIdx--);
-    if (charIdx < 0) {
-      isDeleting = false;
-      idx++;
-    }
-  } else {
-    typingElement.textContent = currentText.substring(0, charIdx++);
-    if (charIdx > currentText.length) {
-      isDeleting = true;
-      setTimeout(type, 800);
-      return;
-    }
-  }
-  setTimeout(type, isDeleting ? 60 : 120);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-document.addEventListener("DOMContentLoaded", type);
+body {
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero h2 {
+  font-size: 1.5rem;
+  color: #bbb;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hero button:hover {
+  background: #00eaff;
+  color: #000;
+}
+
+/* About Section */
+
+.about {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 10px auto;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+/* Skills Section */
+
+.skills {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.skills h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s;
+}
+
+.skill-card:hover {
+  background: #00eaff;
+  color: #000;
+  transform: translateY(-5px);
+}
+
+/* Contact Section */
+
+.contact {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input, form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+form button {
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  background: #00eaff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.social a {
+  margin: 0 10px;
+  color: #00eaff;
+  text-decoration: none;
+}
+
+.social a:hover {
+  text-decoration: underline;
+}
