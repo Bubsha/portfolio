@@ -1,42 +1,30 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const typingElement = document.querySelector(".typing");
+const roles = [
+  "Digital Marketing Specialist",
+  "Content Creator",
+  "YouTube Storyteller"
+];
+let i = 0, txt = '', isDeleting = false, speed = 100;
+const typing = document.querySelector(".typing");
 
-  if (!typingElement) return;
-
-  const roles = [
-    "Digital Marketing Specialist",
-    "Content Creator",
-    "YouTube Storyteller"
-  ];
-
-  let roleIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function type() {
-    const fullText = roles[roleIndex];
-
-    if (isDeleting) {
-      charIndex--;
-    } else {
-      charIndex++;
-    }
-
-    typingElement.textContent = fullText.substring(0, charIndex);
-
-    let typingSpeed = 100;
-
-    if (!isDeleting && charIndex === fullText.length) {
-      typingSpeed = 1500;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      typingSpeed = 500;
-    }
-
-    setTimeout(type, typingSpeed);
+function typeWriter() {
+  const role = roles[i % roles.length];
+  if (isDeleting) {
+    txt = role.substring(0, txt.length - 1);
+  } else {
+    txt = role.substring(0, txt.length + 1);
   }
+  typing.innerHTML = txt;
+  if (!isDeleting && txt === role) {
+    isDeleting = true;
+    speed = 2000;
+  } else if (isDeleting && txt === '') {
+    isDeleting = false;
+    i++;
+    speed = 500;
+  } else {
+    speed = isDeleting ? 50 : 100;
+  }
+  setTimeout(typeWriter, speed);
+}
 
-  type();
-});
+document.addEventListener("DOMContentLoaded", typeWriter);
